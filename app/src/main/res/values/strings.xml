@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Assignment 1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_maps">Location and weather data</string>
+    <string name="button_GPS">Use GPS to find position and temperature</string>
+    <string name="textInfo">This application is the first assignment in the course IMT3662.</string>
+    <string name="textTitle">Playing with Android</string>
+    <string name="errormessage">Could not get location/data from yr.no</string>
+
+</resources>
