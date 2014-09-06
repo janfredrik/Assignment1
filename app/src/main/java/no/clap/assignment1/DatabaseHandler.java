@@ -5,33 +5,23 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    // All Static variables
-    // Database Version
-    private static final int DATABASE_VERSION = 1;
+    // Static variables
+    private static final int DATABASE_VERSION = 1;              // Database version
+    private static final String DATABASE_NAME = "weatherLog";   // Database name
+    private static final String TABLE_WEATHER = "weathers";     // Table name
 
-    // Database Name
-    private static final String DATABASE_NAME = "weatherLog";
-
-    // Contacts table name
-    private static final String TABLE_WEATHER = "weathers";
-
-    // Contacts Table Columns names
-    private static final String KEY_ID = "id";
-    private static final String KEY_WIND = "wind";
-    private static final String KEY_TEMP = "temp";      //
+    private static final String KEY_ID = "id";                  // Table -
+    private static final String KEY_WIND = "wind";              // columns -
+    private static final String KEY_TEMP = "temp";              // names
 
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    // Creating Tables
+    // Creating table
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_WEATHER_TABLE = "CREATE TABLE " + TABLE_WEATHER + "("
@@ -43,52 +33,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Upgrading database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-    // Drop older table if existed
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEATHER);
-
-    // Create tables again
-        onCreate(db);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEATHER);    // Drop older table if existed
+        onCreate(db);                                           // Create tables again
     }
 
-    // Adding new contact
+    // Adding new weather-row
     public void addWeather(Weather weather) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();         // Open database
 
         ContentValues values = new ContentValues();
-        values.put(KEY_WIND, weather.getWind()); // Contact Name
-        values.put(KEY_TEMP, weather.getTemp()); // Contact Phone Number
+        values.put(KEY_WIND, weather.getWind());                // Wind
+        values.put(KEY_TEMP, weather.getTemp());                // Temperature
 
-        // Inserting Row
-        db.insert(TABLE_WEATHER, null, values);
-        db.close(); // Closing database connection
+        db.insert(TABLE_WEATHER, null, values);                 // Inserting row
+        db.close();                                             // Closing database connection
     }
 
-    // Getting All Contacts
-    public List<Weather> getAllWeather() {
-        List<Weather> weatherList = new ArrayList<Weather>();
-        // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_WEATHER;
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
-                Weather weather = new Weather();
-                weather.setID(Integer.parseInt(cursor.getString(0)));
-                weather.setWind(cursor.getString(1));
-                weather.setTemp(cursor.getString(2));
-                // Adding contact to list
-                weatherList.add(weather);
-                } while (cursor.moveToNext());
-            }
-
-        // return contact list
-        return weatherList;
-        }
-
-    // Getting single contact
+    // Getting single weather-row
     public Weather getWeather(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -98,13 +59,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
         cursor.moveToFirst();
 
-        Weather wthr = new Weather(Integer.parseInt(cursor.getString(0)),
+        Weather weather = new Weather(Integer.parseInt(cursor.getString(0)),
         cursor.getString(1), cursor.getString(2));
-        // return contact
-        return wthr;
+
+        return weather;
     }
 
-    // Getting contacts Count
+    // Getting the numbers of rows in database
     public int getWeatherCount() {
         String countQuery = "SELECT  * FROM " + TABLE_WEATHER;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -112,7 +73,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         int count = cursor.getCount();
         cursor.close();
 
-        // return count
         return count;
-        }
+    }
 }
