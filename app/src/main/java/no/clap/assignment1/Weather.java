@@ -6,7 +6,7 @@ public class Weather {
     String  _wind;
     String  _temp;
 
-    // Empty Constructor
+    // Empty constructor
     public Weather() {
 
     }
@@ -25,9 +25,7 @@ public class Weather {
     }
 
     // Get the ID
-    public int getID(){
-        return this._id;
-    }
+    public int getID(){ return this._id; }
 
     // Get the wind
     public String getWind(){

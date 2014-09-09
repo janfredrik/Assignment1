@@ -14,8 +14,8 @@ import com.google.android.gms.maps.model.LatLng;
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
-    private HandleXML obj;
-    DatabaseHandler db = new DatabaseHandler(this);
+    private HandleXML obj;  // For the XML from yr.no
+    DatabaseHandler db = new DatabaseHandler(this);     // For the Weather-database
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     /*
-        Gets the location and centers the location and asks another function for the temperature
+        Gets the location and centers the location. Asks another function for the temperature
         based on the lat+long coordinates.
     */
     private void setUpMap() {
@@ -77,21 +77,21 @@ public class MapsActivity extends FragmentActivity {
         String url = "http://api.yr.no/weatherapi/locationforecast/1.9/?lat=" +
                 latLng.latitude +";lon=" + latLng.longitude;
 
-        obj = new HandleXML(url);
-        obj.fetchXML();
+        obj = new HandleXML(url);                   // Create URL
+        obj.fetchXML();                             // Fetch data
         while(obj.parsingComplete);
         tempTextLocation.setText(obj.getWind() + " | " + obj.getTemperature() + " °C");
         addWeatherDataToDB(obj.getWind(), obj.getTemperature());
         getWeatherDataFromDB();
     }
-        // Great source: http://www.androidhive.info/2011/11/android-sqlite-database-tutorial/
 
     public void addWeatherDataToDB(String wind, String temp) {
       db.addWeather(new Weather(wind, temp));                       // Adds weather to database
     }
 
     public void getWeatherDataFromDB() {
-        int noOfWeathersInDB = db.getWeatherCount()-1;     // -1 because we dont want to get current temp in history
+        int noOfWeathersInDB = db.getWeatherCount()-1;              // -1 because we don't want to
+                                                                    //  get current temp in history
         int numberPrinted = 0;
         TextView last5 = (TextView)findViewById(R.id.last5log);
 

@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+// Great source and good help with the Database handle:
+// http://www.androidhive.info/2011/11/android-sqlite-database-tutorial/
+
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Static variables
