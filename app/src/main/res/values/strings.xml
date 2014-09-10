@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Assignment 1</string>
-    <string name="title_activity_map">MapActivity</string>
+    <string name="app_name">Windeg</string>
     <string name="title_activity_maps">Location and weather data</string>
-    <string name="button_GPS">Use GPS to find position and temperature</string>
-    <string name="textInfo">This application is the first assignment in the course IMT3662.</string>
-    <string name="textTitle">Playing with Android</string>
-    <string name="errorMessage">Could not get location/data from yr.no</string>
+    <string name="button_GPS">Use GPS to find position and Wind+Deg</string>
+    <string name="text_info">Find out how the weather is like in your location with this handy app.</string>
+    <string name="text_title">Playing with Android</string>
+    <string name="error_message">Could not get location/data from yr.no</string>
     <string name="button_checked">Is it checked?</string>
     <string name="checkbox_check">Check me</string>
-    <string name="apiTxt">API: Google/yr.no</string>
+    <string name="api_txt">API: Google/yr.no</string>
 
 </resources>

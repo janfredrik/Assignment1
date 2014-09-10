@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/map"
-    tools:context="no.clap.assignment1.MapsActivity"
+    tools:context="no.clap.windeg.MapsActivity"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_marginTop="140dp" />
 
@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/apiTxt"
+        android:text="@string/api_txt"
         android:id="@+id/yrAPI"
         android:layout_alignBottom="@+id/map"
         android:layout_centerHorizontal="true" />
@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/errorMessage"
+        android:text="@string/error_message"
         android:id="@+id/textView_temperature"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp" />
